@@ -18,7 +18,8 @@ public class GoogleVisionApiTester {
 	public static void main(String[] args) {
 
 		ArrayList<String> path = new ArrayList<String>();
-		String a = "C:\\Users\\SM025\\Desktop\\black\\GoogleVisionAPI\\img2\\";
+		
+		String a = "./WebContent/img2/";
 		path.add(a + "a1.jpg");
 		path.add(a + "a2.jpg");
 		path.add(a + "a3.jpg");
