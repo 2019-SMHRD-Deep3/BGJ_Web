@@ -9,6 +9,9 @@ import com.google.cloud.vision.v1.Feature.Type;
 import com.google.cloud.vision.v1.Image;
 import com.google.protobuf.ByteString;
 
+import model.BookDAO;
+import model.BookDTO;
+
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,24 +19,29 @@ import java.util.List;
 public class GoogleVisionApiTester {
 
 	public static void main(String[] args) {
-
-		ArrayList<String> path = new ArrayList<String>();
+		String title = "용감한포도잼";
 		
-		String a = "./WebContent/img2/";
-		path.add(a + "a1.jpg");
-		path.add(a + "a2.jpg");
-		path.add(a + "a3.jpg");
-		path.add(a + "a4.jpg");
-		path.add(a + "a5.jpg");
-		path.add(a + "a6.jpg");
-		path.add(a + "a7.jpg");
-		path.add(a + "a8.jpg");
-		path.add(a + "a9.jpg");
+		BookDTO dto = new BookDTO(title);
+		BookDAO dao = new BookDAO();
+		ArrayList<BookDTO> path = dao.bookselect(dto);
+		System.out.println(path.size());
+		System.out.println(path.get(0).getPic());
+		
+		String text = "";
+//		String a = "./WebContent/img2/";
+//		path.add();
+//		path.add(a + "a2.jpg");
+//		path.add(a + "a3.jpg");
+//		path.add(a + "a4.jpg");
+//		path.add(a + "a5.jpg");
+//		path.add(a + "a6.jpg");
+//		path.add(a + "a7.jpg");
+//		path.add(a + "a8.jpg");
+//		path.add(a + "a9.jpg");
 
 		for (int i = 0; i < path.size(); i++) {
 			try {
-
-				String imageFilePath = path.get(i); // 여기 설정해줘야함(test이미지 경로)
+				String imageFilePath = path.get(i).getPic(); // 여기 설정해줘야함(test이미지 경로)
 
 				List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -57,7 +65,10 @@ public class GoogleVisionApiTester {
 
 						System.out.println("Text : ");
 						System.out.println(res.getTextAnnotationsList().get(0).getDescription());
-
+						text = res.getTextAnnotationsList().get(0).getDescription();
+						dao.bookupdate(path.get(i).getTitleNum(), text);
+						
+					
 						// For full list of available annotations, see http://g.co/cloud/vision/docs
 						/*
 						 * for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
@@ -71,6 +82,10 @@ public class GoogleVisionApiTester {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(text);
+		
+		
+		
 
 	}
 
