@@ -13,12 +13,21 @@ import model.BookDAO;
 import model.BookDTO;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GoogleVisionApiTester {
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-	public static void main(String[] args) {
+public class GoogleVisionApiTester {
+	
+
+	public void textreturn() {
+		
+		
+		
 		String title = "용감한포도잼";
 		
 		BookDTO dto = new BookDTO(title);
@@ -88,5 +97,8 @@ public class GoogleVisionApiTester {
 		
 
 	}
+	
+
+	
 
 }

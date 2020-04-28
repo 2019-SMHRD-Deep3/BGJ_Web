@@ -26,8 +26,8 @@ select * from publicbooks where title='용감한포도잼';
 
 drop table grape;
 drop table privacybooks;
-drop table publicbooks;
 drop table voices;
+drop table publicbooks;
 
 create table publicbooks (
 title varchar2(100),

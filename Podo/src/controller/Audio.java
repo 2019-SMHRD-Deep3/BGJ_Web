@@ -1,6 +1,8 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import GoogleVisionAPITester.GoogleVisionApiTester;
 import model.BookDAO;
 import model.BookDTO;
 
@@ -31,15 +34,40 @@ public class Audio extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
-		System.out.println("hi");
-		System.out.println(cnt);
-        //이미지를 저장할 경로 입력.
-        String folderTypePath = "D:\\ttt";
+		response.setCharacterEncoding("EUC-KR");
+	    PrintWriter out = response.getWriter();
+	      
+	     String id = request.getParameter("id");
+	     System.out.println(id+"잘넘어왔네");
+	      
+	      
+	      
+	   /////////////////////////////////////////////////////////////////////////
+	      
+	      String folderTypePath = "D:\\"+id;
+	      
+	      File Folder = new File(folderTypePath);
+
+
+	      // 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
+	      if (!Folder.exists()) {
+	         try{
+	             Folder.mkdir(); //폴더 생성합니다.
+	             System.out.println("폴더가 생성되었습니다.");
+	              } 
+	              catch(Exception e){
+	             e.getStackTrace();
+	         }        
+	            }else {
+	         System.out.println("이미 폴더가 생성되어 있습니다.");
+	      }
+		
+	
         String name = new String();
         String fileName = new String();
         int sizeLimit = 10 * 1024 * 1024; // 5메가까지 제한 넘어서면 예외발생
+ 
         try {
         	MultipartRequest multi = new MultipartRequest(request, folderTypePath, sizeLimit,
                     new DefaultFileRenamePolicy());
@@ -52,7 +80,7 @@ public class Audio extends HttpServlet {
             	
                 name = (String) files.nextElement();
                 fileName = multi.getFilesystemName(name);
-                dto = new BookDTO("용감한포도잼", cnt, "D:/ttt/" + fileName, "", "");
+                dto = new BookDTO("용감한포도잼", cnt, folderTypePath + "\\"+  fileName, "", "");
                 dao.bookinsert(dto);
                 cnt +=1;
                
@@ -62,11 +90,12 @@ public class Audio extends HttpServlet {
         } catch (IOException e) {
             System.out.println("안드로이드 부터 이미지를 받아옵니다.");
         }
-       
+        
+        GoogleVisionApiTester GVA = new GoogleVisionApiTester();
+        GVA.textreturn();
     
 		
 	}
-	
-	
+
 
 }

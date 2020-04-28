@@ -39,8 +39,14 @@ public class Loginserice extends HttpServlet {
 		
 	
 		boolean result = dao.login(dto);
+		System.out.println(result);
+		if(result) {
 		
-		out.print(result);
+		out.print(id);
+		
+		}else {
+			out.print(result);
+		}
 		
 		
 		
