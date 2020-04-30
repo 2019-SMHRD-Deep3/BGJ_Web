@@ -9,6 +9,7 @@ select * from bookmember
 
  
 INSERT INTO bookmember VALUES ('ttt', '123');
+INSERT INTO bookmember VALUES ('aaa', '123');
 
 select * from bookmember where id='ttt' and pw='123'
  
