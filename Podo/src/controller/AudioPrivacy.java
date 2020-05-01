@@ -14,18 +14,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import GoogleVisionAPITester.GoogleVisionApiTester;
+import GoogleVisionAPITester.GoogleVisionApiTester2;
 import model.BookDAO;
 import model.BookDTO;
+import model.BookPrivacyDAO;
+import model.BookPrivacyDTO;
 
 /**
  * Servlet implementation class Audio
  */
-@WebServlet("/Audio")
-public class Audio extends HttpServlet {
+@WebServlet("/AudioPrivacy")
+public class AudioPrivacy extends HttpServlet {
 	
-	BookDAO dao = new BookDAO();
-	BookDTO dto = new BookDTO();
+	BookPrivacyDAO dao = new BookPrivacyDAO();
+	BookPrivacyDTO dto = new BookPrivacyDTO();
 	int cnt = 0;
 	
 	private static final long serialVersionUID = 1L;
@@ -83,7 +85,7 @@ public class Audio extends HttpServlet {
                 File file = new File(folderTypePath + "\\"+  fileName); 
                 file.renameTo(new File(folderTypePath + "\\"+ cnt + ".jpg"));
 //                dto = new BookDTO("용감한포도잼", cnt, folderTypePath + "\\"+ fileName, "", "");
-                dto = new BookDTO("용감한포도잼", cnt, "");
+                dto = new BookPrivacyDTO(id , "용감한포도잼", cnt, "");
                 dao.bookinsert(dto);
                 
                 cnt +=1;
@@ -96,7 +98,7 @@ public class Audio extends HttpServlet {
             System.out.println("안드로이드 부터 이미지를 받아옵니다.");
         }
         
-        GoogleVisionApiTester GVA = new GoogleVisionApiTester();
+        GoogleVisionApiTester2 GVA = new GoogleVisionApiTester2();
         GVA.textreturn(folderTypePath + "\\", cnt);
     
 		

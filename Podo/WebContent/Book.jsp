@@ -20,7 +20,7 @@
 
 	<%-- <img src="<d:url value="../../../../../../D/ttt/${1588033643597.jpg}"/>""/> --%>
 <!-- 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-	<img id="img0" src="./ttt/1588033647090.jpg" >
+	<img id="img0" src="./aaa/0.jpg" >
 
 </body>
 </html>

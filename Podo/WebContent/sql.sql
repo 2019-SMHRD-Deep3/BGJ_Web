@@ -33,12 +33,12 @@ drop table publicbooks;
 create table publicbooks (
 title varchar2(100),
 titleNum number(30),
-pic varchar2(100),
 txt varchar2(1000),
-voice varchar2(100),
 CONSTRAINT publicbooks_pk primary key (title, titleNum)
 );
 
+
+select * from grape
 
 create table grape(
 id VARCHAR2(40) primary key,
@@ -46,13 +46,14 @@ pw VARCHAR2(10) ,
 nickname varchar2(30)
 );
 
+
+select * from privacybooks
+
 create table privacybooks (
 id VARCHAR2(40) ,
 title varchar2(100),
 titleNum number(35),
-pic varchar2(100),
 txt varchar2(1000),
-voice varchar2(100),
 constraint study_id_fk foreign key(id) references grape(id),
 CONSTRAINT privacybooks_pk primary key (id, title, titleNum)
 );

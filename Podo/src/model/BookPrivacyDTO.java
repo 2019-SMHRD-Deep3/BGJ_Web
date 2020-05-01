@@ -1,23 +1,33 @@
 package model;
 
-public class BookDTO {
-	
+public class BookPrivacyDTO {
+	private String id;
 	private String title;
 	private int titleNum;
 	private String txt;
 	
-	public BookDTO(String title, int titleNum, String txt) {
+	public BookPrivacyDTO(String id, String title, int titleNum, String txt) {
 		super();
+		this.id = id;
 		this.title = title;
 		this.titleNum = titleNum;
 		this.txt = txt;
 	}
 
-	public BookDTO() {
+	public BookPrivacyDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
-	public BookDTO(String title) {
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public BookPrivacyDTO(String title) {
 		this.title = title;
 	}
 

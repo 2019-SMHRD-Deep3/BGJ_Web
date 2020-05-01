@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class BookDAO {
+public class BookPrivacyDAO {
 
 	private PreparedStatement psmt;
 	private Connection conn;
@@ -48,15 +48,16 @@ public class BookDAO {
 		}
 	}
 
-	public void bookinsert(BookDTO dto) {
+	public void bookinsert(BookPrivacyDTO dto) {
 		try {
 			getConnection();
-			String sql = "insert into publicbooks values(?,?,?)";
+			String sql = "insert into privacybooks values(?,?,?,?)";
 			psmt = conn.prepareStatement(sql);
 
-			psmt.setString(1, dto.getTitle());
-			psmt.setInt(2, dto.getTitleNum());
-			psmt.setString(3, dto.getTxt());
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getTitle());
+			psmt.setInt(3, dto.getTitleNum());
+			psmt.setString(4, dto.getTxt());
 
 			int cnt = psmt.executeUpdate();
 
@@ -89,7 +90,7 @@ public class BookDAO {
 
 		try {
 			getConnection();
-			String sql = "select * from publicbooks where title =? ";
+			String sql = "select * from privacybooks where title =? ";
 
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getTitle()); 
@@ -118,9 +119,9 @@ public class BookDAO {
 		int cnt = 0;
 		try {
 			getConnection();
-			String sql = "update publicbooks set txt = ? where titlenum = ?";
+			String sql = "update privacybooks set txt = ? where titlenum = ?";
 			System.out.println("titlenum : " + titlenum);
-			System.out.println("text : " +text);
+			System.out.println("text : " + text);
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, text);
 			psmt.setInt(2, titlenum);

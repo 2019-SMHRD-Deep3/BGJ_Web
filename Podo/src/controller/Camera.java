@@ -93,7 +93,7 @@ public class Camera extends HttpServlet {
 	               
 	                name = (String) files.nextElement();
 	                fileName = multi.getFilesystemName(name);
-	                dto = new BookDTO("용감한포도잼", cnt, folderTypePath + "\\"+  fileName, "", "");
+	                dto = new BookDTO("용감한포도잼", cnt, "");
 	                dao.bookinsert(dto);
 	                cnt +=1;
 	               
@@ -105,7 +105,7 @@ public class Camera extends HttpServlet {
 	        }
 	        
 	        GoogleVisionApiTester GVA = new GoogleVisionApiTester();
-	        GVA.textreturn();
+	        GVA.textreturn(folderTypePath + "\\", cnt);
 
 
 	}
