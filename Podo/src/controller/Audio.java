@@ -83,7 +83,9 @@ public class Audio extends HttpServlet {
                 dto = new BookDTO("용감한포도잼", cnt, folderTypePath + "\\"+  fileName, "", "");
                 dao.bookinsert(dto);
                 cnt +=1;
-               
+                File file = new File(folderTypePath + "\\"+  fileName); 
+                file.renameTo(new File(folderTypePath + "\\"+ cnt + ".jpg"));
+
             }
             System.out.println("이미지를 저장하였습니다. : " + fileName);
             
