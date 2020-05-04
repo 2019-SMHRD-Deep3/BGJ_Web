@@ -51,13 +51,14 @@ public class BookPrivacyDAO {
 	public void bookinsert(BookPrivacyDTO dto) {
 		try {
 			getConnection();
-			String sql = "insert into privacybooks values(?,?,?,?)";
+			String sql = "insert into privacybooks values(?,?,?,?,?)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getTitle());
-			psmt.setInt(3, dto.getTitleNum());
-			psmt.setString(4, dto.getTxt());
+			psmt.setInt(3, dto.getNum());
+			psmt.setInt(4, dto.getTitleNum());
+			psmt.setString(5, dto.getTxt());
 
 			int cnt = psmt.executeUpdate();
 
@@ -79,30 +80,36 @@ public class BookPrivacyDAO {
 		}
 	}
 
-	public ArrayList<BookDTO> bookselect(BookDTO dto) {
+	public int bookNumselect(BookPrivacyDTO dto) {
 
-		ArrayList<BookDTO> book = new ArrayList<BookDTO>();
+		/* ArrayList<BookPrivacyDTO> book = new ArrayList<BookPrivacyDTO>(); */
+		int num = 0;
 		
 		BookDTO info = null;
 		String title = null;
 		int titleNum = 0;
 		String txt = null;
-
+	
 		try {
 			getConnection();
-			String sql = "select * from privacybooks where title =? ";
+			String sql = "select * from privacybooks where id=? and title=?";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getTitle()); 
-
+			psmt.setString(1, dto.getId()); 
+			psmt.setString(2, dto.getTitle()); 
+			
 			rs = psmt.executeQuery();
+			if(!rs.next()) {
+				
+			}else if (rs.next()) {
+				title = rs.getString(2); 
+				num = rs.getInt(3);
+				titleNum = rs.getInt(4);
+				txt = rs.getString(5);
+			
 
-			while (rs.next()) {
-				title = rs.getString(1); 
-				titleNum = rs.getInt(2);
-				txt = rs.getString(3);
-
-				info = new BookDTO(title, titleNum, txt);
+				//info = new BookDTO(title, titleNum, txt);
+				num++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -110,7 +117,7 @@ public class BookPrivacyDAO {
 			close();
 		}
 		
-		return book;
+		return num;
 	}
 	
 	public int bookupdate(int titlenum, String text ) { 

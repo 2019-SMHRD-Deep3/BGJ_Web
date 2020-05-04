@@ -37,11 +37,14 @@ public class AudioPrivacy extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setCharacterEncoding("EUC-KR");
+		response.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");
 	    PrintWriter out = response.getWriter();
 	      
 	    String id = request.getParameter("id");
+	    String title = request.getParameter("title");
 	    System.out.println(id+"잘넘어왔네");
+	    System.out.println("title 은" + title);
 	      
 	      
 	      
@@ -85,7 +88,10 @@ public class AudioPrivacy extends HttpServlet {
                 File file = new File(folderTypePath + "\\"+  fileName); 
                 file.renameTo(new File(folderTypePath + "\\"+ cnt + ".jpg"));
 //                dto = new BookDTO("용감한포도잼", cnt, folderTypePath + "\\"+ fileName, "", "");
-                dto = new BookPrivacyDTO(id , "용감한포도잼", cnt, "");
+                dto = new BookPrivacyDTO(id, title);
+                int num = dao.bookNumselect(dto);
+                System.out.println("num" + num);
+                dto = new BookPrivacyDTO(id, title, num, cnt, "");
                 dao.bookinsert(dto);
                 
                 cnt +=1;

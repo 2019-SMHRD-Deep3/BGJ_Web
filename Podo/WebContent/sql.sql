@@ -52,12 +52,17 @@ select * from privacybooks
 create table privacybooks (
 id VARCHAR2(40) ,
 title varchar2(100),
+num number(35),
 titleNum number(35),
 txt varchar2(1000),
 constraint study_id_fk foreign key(id) references grape(id),
 CONSTRAINT privacybooks_pk primary key (id, title, titleNum)
 );
 
+INSERT INTO privacybooks VALUES ('ttt', '하이하이2','7','7','7');
+
+
+select * from privacybooks where id=? title =? 
 create table voices  (
 id VARCHAR2(40) primary key,
 voice1 VARCHAR2(1000),

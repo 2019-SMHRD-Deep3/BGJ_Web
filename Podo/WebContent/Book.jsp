@@ -32,7 +32,7 @@
 		   num = cnt;
 	   }
 	   
-	   String imgsrc = "./aaa/" + num + ".jpg";
+	   String imgsrc = "./aa/" + num + ".jpg";
 	%>
 		
 	
