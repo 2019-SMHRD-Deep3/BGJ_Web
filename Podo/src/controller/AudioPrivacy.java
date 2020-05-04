@@ -40,8 +40,8 @@ public class AudioPrivacy extends HttpServlet {
 		response.setCharacterEncoding("EUC-KR");
 	    PrintWriter out = response.getWriter();
 	      
-	     String id = request.getParameter("id");
-	     System.out.println(id+"잘넘어왔네");
+	    String id = request.getParameter("id");
+	    System.out.println(id+"잘넘어왔네");
 	      
 	      
 	      

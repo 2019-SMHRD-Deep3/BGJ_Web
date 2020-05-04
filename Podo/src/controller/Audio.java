@@ -39,16 +39,18 @@ public class Audio extends HttpServlet {
 	    PrintWriter out = response.getWriter();
 	      
 	     String id = request.getParameter("id");
-	     System.out.println(id+"잘넘어왔네");
+
+	     
+	     System.out.println(id + " 잘넘어왔네");
 	      
 	      
 	      
 	   /////////////////////////////////////////////////////////////////////////
 	      
 	      String folderTypePath = "C:\\Users\\SM025\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
+	     
 	      
 	      File Folder = new File(folderTypePath);
-
 
 	      // 해당 디렉토리가 없을경우 디렉토리를 생성합니다.
 	      if (!Folder.exists()) {
@@ -62,7 +64,8 @@ public class Audio extends HttpServlet {
 	            }else {
 	         System.out.println("이미 폴더가 생성되어 있습니다.");
 	      }
-		
+	
+
 	
         String name = new String();
         String fileName = new String();

@@ -26,7 +26,9 @@
 	   int bookpage = 0;   
 	   int cnt = 9;
 	   
-	   if(num > cnt){
+	   if(num<0){
+		   num = 0;
+	   }else if(num > cnt){
 		   num = cnt;
 	   }
 	   
@@ -38,6 +40,9 @@
 	<%= num %>
 	<%= imgsrc %>
 	<img id="img0" src= "<%= imgsrc %>">
+	<audio controls autoplay>
+		<source src="./music/goethe.wav" >
+	</audio>
 	
 	
 	
@@ -45,9 +50,9 @@
 	
 	
 	<!-- <iframe src="../silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
-<!--  	<audio controls autoplay>
+-  	<audio id="audio" controls autoplay>
 		<source src="./music/goethe.wav" >
-	</audio> -->
+	</audio> 
 	
 <!-- 	<a id = 'ff'>ggh</a> -->
 	
@@ -57,18 +62,19 @@
 	<script type="text/javascript" src='js/jquery-3.4.1.min.js'></script>  
 	<script type="text/javascript">
 		//document.getElementById('jj').play();
-	
+/* 	
 	$('#img0').on('click', function(){
 		var audio = new Audio();
 		audio.src = 'music/goethe.wav';
 		audio.play();
 		
 		console.log('dd')
-	});
-			
-			
-		
-			
+	}); */
+	
+	function onPageFinished() {
+	       var audio = document.getElementById("audio");
+	       audio.play();
+	}
 	
 	
 	</script>

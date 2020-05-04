@@ -23,7 +23,7 @@ select * from grape where id='ttt' and pw='123'
 INSERT INTO publicbooks VALUES ('용감한포도잼', 1,'0','0','0');
 INSERT INTO publicbooks VALUES ('용감한포도잼', 2,'0','0','0');
 select * from publicbooks where title='용감한포도잼';
-select * from publicbooks
+elect * from publicbooks
 
 drop table grape;
 drop table privacybooks;
