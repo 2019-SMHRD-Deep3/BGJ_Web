@@ -51,13 +51,13 @@ public class BookPrivacyDAO {
 	public void bookinsert(BookPrivacyDTO dto) {
 		try {
 			getConnection();
-			String sql = "insert into privacybooks values(?,?,?,?,?)";
+			String sql = "insert into privacybooks values(?,?,?,?,?,sysdate)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getTitle());
-			psmt.setInt(3, dto.getNum());
-			psmt.setInt(4, dto.getTitleNum());
+			psmt.setInt(3, dto.getTitleNum());
+			psmt.setInt(4, dto.getNum());
 			psmt.setString(5, dto.getTxt());
 
 			int cnt = psmt.executeUpdate();
@@ -80,62 +80,59 @@ public class BookPrivacyDAO {
 		}
 	}
 
-	public int bookNumselect(BookPrivacyDTO dto) {
+	public ArrayList<String> bookNumselect(String id,String titlee) {
 
 		/* ArrayList<BookPrivacyDTO> book = new ArrayList<BookPrivacyDTO>(); */
-		int num = 0;
 		
-		BookDTO info = null;
-		String title = null;
-		int titleNum = 0;
-		String txt = null;
 	
+		String title = "";
+		
+	
+		ArrayList<String> titles = new ArrayList<>();
+		
 		try {
 			getConnection();
-			String sql = "select * from privacybooks where id=? and title=?";
+			String sql = "select title,max(date2) date3 from privacybooks where id=? and title!=? group by title order by date3 asc";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dto.getId()); 
-			psmt.setString(2, dto.getTitle()); 
-			
+			psmt.setString(1, id);
+			psmt.setString(2, titlee);
 			rs = psmt.executeQuery();
-			if(!rs.next()) {
-				
-			}else if (rs.next()) {
-				title = rs.getString(2); 
-				num = rs.getInt(3);
-				titleNum = rs.getInt(4);
-				txt = rs.getString(5);
 			
+			
+				while (rs.next()) {
+					title = rs.getString(1);
+					
+					
+					titles.add(title);
+				}
 
-				//info = new BookDTO(title, titleNum, txt);
-				num++;
-			}
+				
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
 		
-		return num;
+
+		return titles;
 	}
-	
-	public int bookupdate(int titlenum, String text ) { 
-		
-	
+
+	public int bookupdate(int num, String text) {
+
 		int cnt = 0;
 		try {
 			getConnection();
-			String sql = "update privacybooks set txt = ? where titlenum = ?";
-			System.out.println("titlenum : " + titlenum);
+			String sql = "update privacybooks set txt = ? where num = ?";
+			System.out.println("titlenum : " + num);
 			System.out.println("text : " + text);
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, text);
-			psmt.setInt(2, titlenum);
-			
+			psmt.setInt(2, num);
 
 			cnt = psmt.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -3,27 +3,34 @@ package model;
 public class BookPrivacyDTO {
 	private String id;
 	private String title;
-	private int num;
 	private int titleNum;
+	private int num;
 	private String txt;
 	
-	public BookPrivacyDTO(String id, String title, int num, int titleNum, String txt) {
+	public BookPrivacyDTO(String id, String title, int titleNum, int num, String txt) {
 		this.id = id;
 		this.title = title;
-		this.num = num;
 		this.titleNum = titleNum;
+		this.num = num;
 		this.txt = txt;
 	}
 	
-	public BookPrivacyDTO(String title, int num, int titleNum, String txt) {
+	
+	
+	public BookPrivacyDTO(String title, int titleNum, int num, String txt) {
 		this.title = title;
-		this.num = num;
 		this.titleNum = titleNum;
+		this.num = num;
 		this.txt = txt;
 	}
 	
 	public BookPrivacyDTO(String id, String title) {
 		this.id = id;
+		this.title = title;
+		
+	}
+	public BookPrivacyDTO(String title, int num) {
+		this.num = num;
 		this.title = title;
 		
 	}

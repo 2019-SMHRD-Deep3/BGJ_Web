@@ -51,7 +51,7 @@ public class BookDAO {
 	public void bookinsert(BookDTO dto) {
 		try {
 			getConnection();
-			String sql = "insert into publicbooks values(?,?,?)";
+			String sql = "insert into publicbooks values(?,?,?,sysdate)";
 			psmt = conn.prepareStatement(sql);
 
 			psmt.setString(1, dto.getTitle());

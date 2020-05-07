@@ -57,7 +57,7 @@ public class MemberDAO {
 		
 		try {
 			getConnection();
-			String sql = "select * from bookmember where id=? and pw=?";
+			String sql = "select * from grape where id=? and pw=?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());
