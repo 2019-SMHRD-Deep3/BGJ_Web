@@ -8,14 +8,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MemberDAO {
-	
-	
+
 	private PreparedStatement psmt;
 	private Connection conn;
 	private ResultSet rs;
 	private boolean result;
 
-	
 	public void getConnection() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -51,39 +49,85 @@ public class MemberDAO {
 	}
 
 	public boolean login(MemberDTO dto) {
-		
+
 		MemberDTO info = null;
-		
-		
+
 		try {
 			getConnection();
 			String sql = "select * from grape where id=? and pw=?";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());
-			
+
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-				//String id1 = rs.getString(1);
-				//String pw1 = rs.getString(2);
+				// String id1 = rs.getString(1);
+				// String pw1 = rs.getString(2);
 				result = true;
 
-				//info = new MemberDTO(id1, pw1);
+				// info = new MemberDTO(id1, pw1);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close();
 		}
-		
-		
-		
-		
+
 		return result;
 	}
 	
-	
-	
-	
+	public boolean Join(MemberDTO dto) {
+
+		int num;
+		boolean result = false;
+		
+		try {
+			getConnection();
+			String sql = "insert into grape values(?, ?, ?, ?)";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getPw());
+			psmt.setString(3, dto.getName());
+			psmt.setString(4, dto.getEmail());
+			num = psmt.executeUpdate();
+			
+			if(num==1) {
+				result = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return result;
+	}
+
+	public boolean JoinCheck(MemberDTO dto) {
+
+		MemberDTO info = null;
+
+		try {
+			getConnection();
+			String sql = "select * from grape where id=?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getId());
+
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				String id = rs.getString(1);
+				result = true;
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return result;
+	}
+
 }

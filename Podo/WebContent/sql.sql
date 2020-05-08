@@ -17,10 +17,9 @@ commit
 
 
 
-INSERT INTO grape VALUES ('ttt', '123', 'nickname');
-INSERT INTO grape VALUES ('aaa', '123', 'aa');
-INSERT INTO grape VALUES ('bbb', '123', 'nickname');
-INSERT INTO grape VALUES ('ccc', '123', 'nickname');
+INSERT INTO grape VALUES ('aaa', '123', 'aa','aaa@naver.com');
+INSERT INTO grape VALUES ('bbb', '123', 'nickname','bbb@naver.com');
+INSERT INTO grape VALUES ('ccc', '123', 'nickname','ccc@naver.com');
 select * from grape where id='bbb' and pw='123'
 
 INSERT INTO publicbooks VALUES ('용감한포도잼', 1,'0','0','0');
@@ -30,15 +29,15 @@ elect * from publicbooks
 
 drop table grape cascade constraint;
 drop table privacybooks;
-
 drop table publicbooks;
 
 
 
 create table grape (
 id VARCHAR2(10) primary key,
-pw VARCHAR2(10) ,
-nickname varchar2(30)
+pw VARCHAR2(10),
+nickname varchar2(30),
+email varchar2(30)
 );
 
 create table publicbooks (

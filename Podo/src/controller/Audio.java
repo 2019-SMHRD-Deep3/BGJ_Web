@@ -47,7 +47,7 @@ public class Audio extends HttpServlet {
 	      
 	   /////////////////////////////////////////////////////////////////////////
 	      
-	      String folderTypePath = "C:\\Users\\SM025\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
+	      String folderTypePath = "C:\\Users\\SM016\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
 	     
 	      
 	      File Folder = new File(folderTypePath);

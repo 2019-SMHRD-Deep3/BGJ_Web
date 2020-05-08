@@ -58,7 +58,7 @@ public class AudioPrivacy extends HttpServlet {
         int num = dao.bookNumselect(id,title).size();
         System.out.println(num+"¿Ö¾È³ª¿È?");
         
-	      String folderTypePath = "C:\\Users\\SM025\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
+	      String folderTypePath = "C:\\Users\\SM016\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
 	      String folderTypePath2 = folderTypePath+"\\"+id+"_"+num;
 	      
 	      File Folder = new File(folderTypePath);
