@@ -86,7 +86,10 @@ public class BookPrivacyDAO {
 		
 	
 		String title = "";
-		
+		String id2 = id;
+		if(id.equals("")) {
+			id2 = "호롤롤롤";
+		}
 	
 		ArrayList<String> titles = new ArrayList<>();
 		
@@ -95,7 +98,7 @@ public class BookPrivacyDAO {
 			String sql = "select title,max(date2) date3 from privacybooks where id=? and title!=? group by title order by date3 asc";
 
 			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
+			psmt.setString(1, id2);
 			psmt.setString(2, titlee);
 			rs = psmt.executeQuery();
 			

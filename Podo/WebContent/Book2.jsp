@@ -19,10 +19,10 @@
 }
 </style>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	var audio = new Audio();
 	audio.src = "./aaa/0.wav";
-</script>
+</script> -->
 <style>
 #img0 { /* 반응형 웹 -> 이미지 조절 법 */
 	width: 100%;
@@ -38,13 +38,13 @@
 <body>
 
 	<%
-		String id = request.getParameter("id");
+ 		String id = request.getParameter("id");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String where = request.getParameter("where");
 		int page1 = Integer.parseInt(request.getParameter("page"));
-		//String id = "aaa";
+		
 		String path = null;
-		String src = null;
+		String src = null; 
 		
 		if(where.equals("book")){
 			path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + id +"//" + id + "_" + num;
@@ -55,7 +55,14 @@
 			src = "./" + where + "/l" + num + "/";
 		}
 
-
+ 
+/* 		String id = "aaa";
+		int num = 3;
+		String where = "book";
+		int page1 = 0;
+		
+		String path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + id +"//" + id + "_" + num;
+		String src = "./" + id + "/" + id + "_" + num + "/"; */
 
 		System.out.println("id : " + id);
 		System.out.println("num : " + num);
@@ -117,14 +124,20 @@
 	
 		
 		audio.addEventListener("ended", function() {
-			i = i + 1 + <%= num%>;
+			i = i + 1 + <%= page1 %>; 
+			/* i += 1 */
 			if (i < <%= cnt %>) {
 				myFunction();
 			} 
 		});
 		
 		img.onload = function(){
-		
+			 if(img.naturalWidth == 4032){
+					
+					img.style.transform = "rotate(90deg)"
+				}else {
+					img.style.transform = "rotate(0deg)"
+				}
 			audio.play();
 			
 		};
@@ -137,10 +150,6 @@
 			var imgSrc1 = '<%= src %>' + i + '.jpg' ;
 			var audioSrc1 = '<%= src %>' + i + '.m4a' ;
 			img.setAttribute('src', imgSrc1);
-			if(img.naturalWidth > img.naturalHeight){
-				//img.setAttributeotate(90deg)ransform:rotate(90deg);");
-				img.style.transform = "rotate(90deg)"
-			}
 			audio.setAttribute('src', audioSrc1);
 			
 			console.log("img: " + imgSrc1);

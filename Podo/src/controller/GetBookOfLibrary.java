@@ -22,46 +22,47 @@ import model.GetLibraryDAO;
 public class GetBookOfLibrary extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		
-		
-		  request.setCharacterEncoding("EUC-KR");
-	      response.setCharacterEncoding("EUC-KR");
-	      PrintWriter out = response.getWriter();
-	      
-	      String id =  request.getParameter("id");
-	      String title =  request.getParameter("title");
 
-	      
-	      System.out.println(id);
-	      
-	      GetLibraryDAO dao = new GetLibraryDAO();
-	      BookPrivacyDAO dao2 = new BookPrivacyDAO();
-	      ArrayList<String> array =  dao.bookselect();
-	      ArrayList<String> array2 = dao2.bookNumselect(id,title);
-	      String data = "";
-	      String data2 = "";
-	      for(int i = 0; i<array.size();i++) {
-	         data += array.get(i)+"#";
-	      }
-	   
-	      for(int i = 0; i<array2.size();i++) {
-	         data2 +=array2.get(i)+"#";
-	      }
-	      
-	      data= data+"/"+data2;
-	      
-	      System.out.println(data);
-	      if(data!="") {
-	         out.print(URLEncoder.encode(data,"EUC-KR"));
-	      }else {
-	         out.print(false);
-	      }
+		System.out.println("호로로롤로");
+		request.setCharacterEncoding("EUC-KR");
+		response.setCharacterEncoding("EUC-KR");
+		PrintWriter out = response.getWriter();
+
+		String id = request.getParameter("id");
+
+		String title = request.getParameter("title");
+
+		GetLibraryDAO dao = new GetLibraryDAO();
+		BookPrivacyDAO dao2 = new BookPrivacyDAO();
+		ArrayList<String> array = dao.bookselect();
+		ArrayList<String> array2 = dao2.bookNumselect(id, title);
+		String data = "";
+		String data2 = "";
+		for (int i = 0; i < array.size(); i++) {
+			data += array.get(i) + "#";
+		}
+		if (!id.equals(".")) {
+			for (int i = 0; i < array2.size(); i++) {
+
+				data2 += array2.get(i) + "#";
+
+			}
+			if (array2.size() == 0) {
+				data2 += "#";
+			}
+		}
+		//data+="d";
+		data = data + "/" + data2;
+
+		System.out.println(data);
+		if (data != "") {
+			out.print(URLEncoder.encode(data, "EUC-KR"));
+		} else {
+			out.print(false);
+		}
 	}
 
 }
