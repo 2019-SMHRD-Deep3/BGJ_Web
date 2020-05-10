@@ -58,8 +58,12 @@ public class AudioPrivacy extends HttpServlet {
         int num = dao.bookNumselect(id,title).size();
         System.out.println(num+"왜안나옴?");
         
-	      String folderTypePath = "C:\\Users\\SM016\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
+	      String folderTypePath = "C:\\Users\\SM025\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
 	      String folderTypePath2 = folderTypePath+"\\"+id+"_"+num;
+	      
+	      System.out.println(folderTypePath);
+	      System.out.println(folderTypePath2);
+	      
 	      
 	      File Folder = new File(folderTypePath);
 	      File Folder2 = new File(folderTypePath2);
@@ -128,7 +132,7 @@ public class AudioPrivacy extends HttpServlet {
         } catch (IOException e) {
             System.out.println("안드로이드 부터 이미지를 받아옵니다.");
         }
-        
+        System.out.println("aaaaaaaaaaaaaaaa : "  + cnt );
         GoogleVisionApiTester2 GVA = new GoogleVisionApiTester2();
         GVA.textreturn(folderTypePath2 + "\\", cnt);
     

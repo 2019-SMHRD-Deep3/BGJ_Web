@@ -49,10 +49,12 @@ public class GoogleVisionApiTester2 {
 //		path.add(a + "a8.jpg");
 //		path.add(a + "a9.jpg");
 
-		for (int i = 0; i < cnt; i++) {
+		//for (int i = 0; i < cnt; i++) {
+		System.out.println("Bbbbbbbbbbbb : " + cnt);
 			try {
 //				String imageFilePath = path.get(i).getPic(); // 여기 설정해줘야함(test이미지 경로)
-				String imageFilePath = path2 + i + ".jpg";
+				String imageFilePath = path2 + cnt + ".jpg";
+				System.out.println("이미지 경로 : " + cnt + imageFilePath);
 
 				List<AnnotateImageRequest> requests = new ArrayList<>();
 
@@ -77,7 +79,7 @@ public class GoogleVisionApiTester2 {
 						System.out.println("Text : ");
 						System.out.println(res.getTextAnnotationsList().get(0).getDescription());
 						text = res.getTextAnnotationsList().get(0).getDescription();
-						dao.bookupdate(i, text);
+						dao.bookupdate(cnt, text);
 						
 					
 						// For full list of available annotations, see http://g.co/cloud/vision/docs
@@ -92,7 +94,7 @@ public class GoogleVisionApiTester2 {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		//}
 		//System.out.println(text);
 		
 		

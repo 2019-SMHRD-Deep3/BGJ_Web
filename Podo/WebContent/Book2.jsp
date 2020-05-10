@@ -32,16 +32,21 @@
 #img0 {
 	background-size: 100% 100%;
 }
+
+#img1 {
+	width: 150px;
+	height: 150px;
+	z-index: 1;
+}
 </style>
 
 </head>
 <body>
 
 	<%
- 		String id = request.getParameter("id");
+		/* String id = request.getParameter("id");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String where = request.getParameter("where");
-		int page1 = Integer.parseInt(request.getParameter("page"));
 		
 		String path = null;
 		String src = null; 
@@ -54,25 +59,23 @@
 			path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + where + "//l" + num;
 			src = "./" + where + "/l" + num + "/";
 		}
+		*/
 
- 
-/* 		String id = "aaa";
+		String id = "aaa";
 		int num = 3;
 		String where = "book";
 		int page1 = 0;
-		
-		String path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + id +"//" + id + "_" + num;
-		String src = "./" + id + "/" + id + "_" + num + "/"; */
+
+		String path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + id + "//" + id + "_" + num;
+		String src = "./" + id + "/" + id + "_" + num + "/";
 
 		System.out.println("id : " + id);
 		System.out.println("num : " + num);
 		System.out.println("where : " + where);
-		System.out.println("page1 : " + page1);
-		
+
 		System.out.println("path : " + path);
 		System.out.println("audioSrc : " + src);
-		
-		
+
 		File dir = new File(path);
 		File[] files = dir.listFiles();
 		String fileList[] = dir.list(new FilenameFilter() {
@@ -88,19 +91,24 @@
 		System.out.println("파일의 개수 : " + cnt);
 	%>
 
-	<audio id='audio' controls>
-		<source src= <%= src+"1.m4a" %>> 
-		
+	<audio id='audio'>
+		<source src=<%=src + "1.m4a"%>>
+
 	</audio>
-
-	<img id="img0" src= <%= src+"1.jpg" %>>
-
-	<!-- <audio class='audio2' controls autoplay >
-		<source src = "./aaa/1.wav" >
-	</audio>  -->
+<%-- 
+	<img id="img0" src=<%=src + "1.jpg"%>>
+	<img id="img1" src="img2/play.png">
+ --%>
 
 
-	<!-- 	<input type = "button" onclick="audio.ended();" value="play"> -->
+
+		<div style="position: absolute;">
+			<img id="img0" src=<%=src + "1.jpg"%>>
+		</div>
+
+		<div style="position: absolute;">
+			<img id="img1" src="img2/play.png" style="position: relative; top: 200px; left: 100px;">
+		</div>
 
 
 
@@ -112,32 +120,37 @@
 	<script type="text/javascript">
 		var audio = document.getElementById('audio');
 		var img = document.getElementById('img0');
-		var i = 0;
+		var img1 = document.getElementById('img1');
+		var i = 1;
 		
 		//var width = img.naturalWidth;
 		//var height = img.naturalHeight;
 		
 		
 		//myFunction();
-		<% System.out.println("cnt 값 : " + cnt);%>
+		<%System.out.println("cnt 값 : " + cnt);%>
+		
+		$('#img1').click(function(){
+			audio.play();
+			$('#img1').css("display", "none");
+		});
 		
 	
 		
 		audio.addEventListener("ended", function() {
-			i = i + 1 + <%= page1 %>; 
-			/* i += 1 */
-			if (i < <%= cnt %>) {
+			<%-- i = i + 1 + <%= page1 %>;  --%>
+			i += 1;
+			if (i < <%=cnt%>) {
 				myFunction();
 			} 
 		});
 		
 		img.onload = function(){
-			 if(img.naturalWidth == 4032){
-					
+			/*  if(img.naturalWidth == 4032){
 					img.style.transform = "rotate(90deg)"
 				}else {
 					img.style.transform = "rotate(0deg)"
-				}
+				} */
 			audio.play();
 			
 		};
@@ -147,8 +160,8 @@
 		function myFunction() {
 			
 
-			var imgSrc1 = '<%= src %>' + i + '.jpg' ;
-			var audioSrc1 = '<%= src %>' + i + '.m4a' ;
+			var imgSrc1 = '<%=src%>' + i + '.jpg' ;
+			var audioSrc1 = '<%=src%>' + i + '.m4a' ;
 			img.setAttribute('src', imgSrc1);
 			audio.setAttribute('src', audioSrc1);
 			

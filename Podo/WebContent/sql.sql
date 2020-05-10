@@ -100,8 +100,8 @@ INSERT INTO publicbooks VALUES ('»ç°úÀëÀÌ »ç°úÀëÀ» »ç°úÀëÀ¸·Î »ç°úÀëÇÏ¿© »ç°úÀëÇ
 
 
 
-select * from privacybooks
-select title from privacybooks where id='ccc' group by title
+select * from privacybooks where id='bbb'
+select title from privacybooks where id='bbb' group by title
 
 create table privacybooks (
 id VARCHAR2(40) ,
