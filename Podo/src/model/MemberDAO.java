@@ -84,12 +84,11 @@ public class MemberDAO {
 		
 		try {
 			getConnection();
-			String sql = "insert into grape values(?, ?, ?, ?)";
+			String sql = "insert into grape values(?, ?, ?)";
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getId());
 			psmt.setString(2, dto.getPw());
 			psmt.setString(3, dto.getName());
-			psmt.setString(4, dto.getEmail());
 			num = psmt.executeUpdate();
 			
 			if(num==1) {

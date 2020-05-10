@@ -9,8 +9,8 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/annotations-4.1.1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/animal-sniffer-annotations-1.18.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/annotations-4.1.1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/api-common-1.9.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/auto-value-annotations-1.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/checker-compat-qual-2.5.5.jar"/>

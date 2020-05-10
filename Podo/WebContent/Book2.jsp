@@ -44,31 +44,35 @@
 <body>
 
 	<%
-		/* String id = request.getParameter("id");
+		String id = request.getParameter("id");
 		int num = Integer.parseInt(request.getParameter("num"));
 		String where = request.getParameter("where");
+		int a=1;
+		File file ;
 		
 		String path = null;
 		String src = null; 
 		
 		if(where.equals("book")){
-			path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + id +"//" + id + "_" + num;
+			path = "C://Users//SM015//git//BGJ_Web//Podo//WebContent//" + id +"//" + id + "_" + num;
 			src = "./" + id + "/" + id + "_" + num + "/";
 		
 		}else if(where.equals("library")){
-			path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + where + "//l" + num;
+			path = "C://Users//SM015//git//BGJ_Web//Podo//WebContent//" + where + "//l" + num;
 			src = "./" + where + "/l" + num + "/";
-		}
-		*/
+		} 		
 
-		String id = "aaa";
-		int num = 3;
+		/* String id = "aaa";
+		int num = 0;
 		String where = "book";
-		int page1 = 0;
+		int a=1;
+		File file ;
+		
+		
 
-		String path = "C://Users//SM025//git//BGJ_Web//Podo//WebContent//" + id + "//" + id + "_" + num;
-		String src = "./" + id + "/" + id + "_" + num + "/";
-
+		String path = "C:\\Users\\SM015\\git\\BGJ_Web\\Podo\\WebContent\\" + id + "\\" + id + "_" + num;
+		String src = "./" + id + "/" + id + "_" + num + "/"; 
+  */
 		System.out.println("id : " + id);
 		System.out.println("num : " + num);
 		System.out.println("where : " + where);
@@ -77,22 +81,40 @@
 		System.out.println("audioSrc : " + src);
 
 		File dir = new File(path);
+		
 		File[] files = dir.listFiles();
+	  
 		String fileList[] = dir.list(new FilenameFilter() {
-
 			@Override
 			public boolean accept(File dir1, String name) {
 				return name.endsWith("jpg");
 			}
 
 		});
+		
+		String[] audioList = dir.list(new FilenameFilter() {
+			@Override
+			public boolean accept(File dir1, String name) {
+				return name.endsWith("wav");
+			}
 
+		});
+
+		for(int i = 0; i < audioList.length; i++){
+			file = new File( path + "//" + audioList[i]);
+			System.out.println("dkdkdkdkdkkdk : " + path + "//" +  audioList[i]);
+			file.renameTo(new File(path + "//" + (i+1) + ".wav"));
+			
+		}
+		
 		int cnt = fileList.length;
 		System.out.println("파일의 개수 : " + cnt);
+		
 	%>
 
 	<audio id='audio'>
-		<source src=<%=src + "1.m4a"%>>
+	
+		<source src=<%=src + "1.wav"%>>
 
 	</audio>
 <%-- 
@@ -140,7 +162,14 @@
 		audio.addEventListener("ended", function() {
 			<%-- i = i + 1 + <%= page1 %>;  --%>
 			i += 1;
+			
 			if (i < <%=cnt%>) {
+				<%-- var aaaa = '<%= audioList[a]%>';
+				console.log("aaaa : " + aaaa );
+				console.log("aa1 : " + <%=a %>);
+				var b = <%=a %>;
+				<%= a%> = b + i;
+				console.log("aa2 : " + <%=a %>); --%>
 				myFunction();
 			} 
 		});
@@ -160,8 +189,11 @@
 		function myFunction() {
 			
 
-			var imgSrc1 = '<%=src%>' + i + '.jpg' ;
-			var audioSrc1 = '<%=src%>' + i + '.m4a' ;
+			var imgSrc1 = '<%= src %>' + i + '.jpg' ;
+			var audioSrc1 = '<%=src%>' + i + '.wav' ;
+			<%-- var audioSrc1 = '<%= src %>' +  aaaa ;  --%>
+			
+			console.log("audioSrc: " + audioSrc1);
 			img.setAttribute('src', imgSrc1);
 			audio.setAttribute('src', audioSrc1);
 			
@@ -169,7 +201,7 @@
 			console.log("width: " + img.naturalWidth);
 			console.log("height :  " + img.naturalHeight);
 
-		}
+		};
 	</script>
 
 

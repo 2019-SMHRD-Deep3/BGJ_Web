@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,16 +28,14 @@ public class JoinService extends HttpServlet {
 	      String id = request.getParameter("id");
 	      String pw = request.getParameter("pw");
 	      String name = request.getParameter("name");
-	      String email = request.getParameter("email");
 	      
 	      
 	      System.out.println(id);
 	      System.out.println(pw);
 	      System.out.println(name);
-	      System.out.println(email);
 	      
 	      
-	      MemberDTO dto = new MemberDTO(id, pw, name , email);
+	      MemberDTO dto = new MemberDTO(id, pw, name);
 	      MemberDAO dao = new MemberDAO();
 	      boolean result = dao.Join(dto);
 	      out.print(result);

@@ -143,5 +143,31 @@ public class BookPrivacyDAO {
 		}
 		return cnt;
 	}
+	
+	public ArrayList<String> findbook(BookPrivacyDTO dto) {
+
+		ArrayList<String> book = new ArrayList<String>();
+		
+		try {
+			getConnection();
+			String sql = "select * from privacybooks where id = ? and title = ?";
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getId());
+			psmt.setString(2, dto.getTitle());
+
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				book.add(rs.getString(5));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return book;
+	}
 
 }

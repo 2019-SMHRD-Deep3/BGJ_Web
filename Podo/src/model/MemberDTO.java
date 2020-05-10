@@ -19,16 +19,14 @@ public class MemberDTO {
 		this.id = id;
 	}
 
-
-	public MemberDTO(String id, String pw, String name, String email) {
+	
+	public MemberDTO(String id, String pw, String name) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
-		this.email = email;	
 	}
 
 
-	
 	public String getId() {
 		return id;
 	}

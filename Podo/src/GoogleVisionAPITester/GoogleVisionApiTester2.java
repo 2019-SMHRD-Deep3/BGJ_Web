@@ -27,10 +27,7 @@ public class GoogleVisionApiTester2 {
 
 	public void textreturn(String path2, int cnt) {
 		
-		
-		
 		String title = "용감한포도잼";
-		
 		//BookDTO dto = new BookDTO(title);
 		BookPrivacyDAO dao = new BookPrivacyDAO();
 		//ArrayList<BookDTO> bookNum = dao.bookselect(dto);
@@ -50,7 +47,8 @@ public class GoogleVisionApiTester2 {
 //		path.add(a + "a9.jpg");
 
 		//for (int i = 0; i < cnt; i++) {
-		System.out.println("Bbbbbbbbbbbb : " + cnt);
+		
+		
 			try {
 //				String imageFilePath = path.get(i).getPic(); // 여기 설정해줘야함(test이미지 경로)
 				String imageFilePath = path2 + cnt + ".jpg";
@@ -79,6 +77,8 @@ public class GoogleVisionApiTester2 {
 						System.out.println("Text : ");
 						System.out.println(res.getTextAnnotationsList().get(0).getDescription());
 						text = res.getTextAnnotationsList().get(0).getDescription();
+						
+						
 						dao.bookupdate(cnt, text);
 						
 					
