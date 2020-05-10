@@ -44,11 +44,8 @@ public class Audio extends HttpServlet {
 	     System.out.println(id + " 잘넘어왔네");
 	      
 	      
-	      
-	   /////////////////////////////////////////////////////////////////////////
-	      
 	      String folderTypePath = "C:\\Users\\SM015\\git\\BGJ_Web\\Podo\\WebContent\\"+id;
-	     
+
 	      
 	      File Folder = new File(folderTypePath);
 
